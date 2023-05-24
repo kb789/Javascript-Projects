@@ -28,7 +28,9 @@ function evenTest(num) {
 
 evenTest(20);
 
+// tells what time of day it is
 function Time_function() {
+    // javascript date object
     var Time = new Date().getHours();
     var Reply;
     if (Time < 12 == Time > 0) {
