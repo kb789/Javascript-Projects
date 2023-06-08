@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Calculator</title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" href="./css/styles.css">
+		<script src="JS/main.js"></script>
+	</head>
+	<body>
+		<div class="calculator">
+            <input type="text" class="calculator-screen" value="0" disabled/>
+            <div class="calculator-keys">
+                <button type="button" class="operator" value="+" onclick="operatorClick(this.value)">+</button>
+                <button type="button" class="operator" value="-" onclick="operatorClick(this.value)">-</button>
+                <button type="button" class="operator" value="*" onclick="operatorClick(this.value)">&times;</button>
+                <button type="button" class="operator" value="/" onclick="operatorClick(this.value)">&divide;</button>
+
+                <button type="button" value="7" onclick="numberClick(this.value)">7</button>
+                <button type="button" value="8" onclick="numberClick(this.value)">8</button>
+                <button type="button" value="9" onclick="numberClick(this.value)">9</button>
+
+                <button type="button" value="4" onclick="numberClick(this.value)">4</button>
+                <button type="button" value="5" onclick="numberClick(this.value)">5</button>
+                <button type="button" value="6" onclick="numberClick(this.value)">6</button>
+
+                <button type="button" value="1" onclick="numberClick(this.value)">1</button>
+                <button type="button" value="2" onclick="numberClick(this.value)">2</button>
+                <button type="button" value="3" onclick="numberClick(this.value)">3</button>
+                
+                <button type="button" value="0" onclick="numberClick(this.value)">0</button>
+                <button type="button" class="decimal function" value="." onclick="numberClick(this.value)">.</button>
+                <button type="button" class="all-clear function" value="all-clear">AC</button>
+
+                <button type="button" class="equal-sign operator" value="=" onclick="equalsClick()">=</button>
+            </div>
+        </div>
+	</body>
+</html>
