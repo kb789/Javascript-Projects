@@ -22,14 +22,21 @@ function operatorClick(val) {
         if (num!==0 && op==="") {
           op=val;
         }
-      
+        let screen = document.querySelector(".calculator-screen").value;
+        let last_char = screen[screen.length-1]
+        console.log(last_char)
+    
+        if (last_char==="+" || last_char ==="-" || last_char ==="*" || last_char==="/") {
+            document.querySelector(".calculator-screen").value=val;
+        } else {
         document.querySelector(".calculator-screen").value+=val;
         }
+    }
 
 function equalsClick(val) {
     
     let equation = document.querySelector(".calculator-screen").value;
-    
+   
 
     if (op!=="") {
       num=0;
@@ -39,6 +46,9 @@ function equalsClick(val) {
     let ind=0;
     for (let i=0; i<equation.length;i++) {
         if (equation[i]==="+" || equation[i]==="-" || equation[i]==="*" || equation[i]==="/") {
+            if (i===0 && equation[i] === "-" ) {
+             continue;
+            }
             if (op==='+') {
                 num+=Number.parseFloat(equation.substring(ind,i));
             } 
@@ -56,6 +66,7 @@ function equalsClick(val) {
             ind=i+1;
         }
     }
+   
     if (op==='+') {
         num+=Number.parseFloat(equation.substring(ind, equation.length));
         }
@@ -71,6 +82,7 @@ function equalsClick(val) {
 
         document.querySelector(".calculator-screen").value=num;
         op="";
+        
 }
 
 
