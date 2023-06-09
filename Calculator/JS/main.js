@@ -1,12 +1,12 @@
 
+ // global varianble, stores result of operation
  let num=0
  let op=""
 
  
 function numberClick(val) {
    
-    // repeating decimals
-    // handles the case where a calculation has been done and the next input entered is a number=resets to zero
+    // handles the case where a calculation has been done and the next input entered is a number=resets calculator screen to zero
     if (num!==0 && op==="") {
         num=0;
         document.querySelector(".calculator-screen").value=val;
@@ -56,9 +56,6 @@ function operatorClick(val) {
             console.log(screen)
             document.querySelector(".calculator-screen").value=screen;
         }
-
-    
-        
     
 
         document.querySelector(".calculator-screen").value+=val;
@@ -69,7 +66,16 @@ function equalsClick(val) {
     
     let equation = document.querySelector(".calculator-screen").value;
    
-    
+    let last_char = equation[equation.length-1]
+    if (last_char==="+" || last_char ==="-" || last_char ==="*" || last_char==="/") {
+
+        return;
+     }
+
+    if (!(equation.includes("+")|| equation.includes("-") || equation.includes("*") || equation.includes("/"))) {
+     return;
+    }
+    // in the case where a previous calculation was done, reset num to zero so new equation can be calculated
     if (op!=="") {
       num=0;
     }
@@ -129,3 +135,8 @@ function equalsClick(val) {
 }
 
 
+function reset() {
+  num=0;
+  op="";
+  document.querySelector(".calculator-screen").value=Number(0);
+}
