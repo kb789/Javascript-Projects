@@ -42,10 +42,13 @@ html {
     background-color: transparent;
     font-size: 3.2rem;
     color:black;
-
+    background-image: linear-gradient(to bottom, transparent, transparent 50%, rgba(0,0,0,0.6));
+    text-shadow: 0 1px rgba(255,255,255,.4);
  }
 
-
+button:hover {
+    background-color: #e1e1e1
+}
 
  .calculator-keys {
    display: grid;
