@@ -95,7 +95,7 @@ function equalsClick(val) {
 
     //iterates through equation
     for (let i=0; i<equation.length;i++) {
-        
+        console.log(num)
         //looks for operator
         if (equation[i]==="+" || equation[i]==="-" || equation[i]==="*" || equation[i]==="/") {
             
@@ -103,8 +103,9 @@ function equalsClick(val) {
             if (i===0 && equation[i] === "-" ) {
               continue;
               }
-            if ((op==="*" || op==="/") && equation[i] === "-" ) {
+            if ((op==="*" || op==="/") && equation[ind] === "-" ) {
                 i+=1;
+            
                 continue;
              }
                
