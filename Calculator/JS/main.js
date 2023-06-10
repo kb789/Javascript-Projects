@@ -1,10 +1,8 @@
-
  // global varianble, stores result of last calculation
  let num=0
 
  // global variable, stores last operator
  let op=""
-
 
  // function that is triggered when a number or decimal is clicked, adds it to calculator screen
 function numberClick(val) {
@@ -27,7 +25,6 @@ function numberClick(val) {
             screen=screen.slice(0, screen.length-1)
             screen+=val
             document.querySelector(".calculator-screen").value=screen;
-            console.log(screen)
         } 
         else {
             document.querySelector(".calculator-screen").value+=val;
@@ -57,7 +54,6 @@ function operatorClick(val) {
         // allows for multiplication and division by negative numbers.            
         } else if (val==="-" && (last_char==="+" || last_char ==="-")) {
             screen=screen.slice(0, screen.length-1)
-            console.log(screen)
             document.querySelector(".calculator-screen").value=screen;
         }
         document.querySelector(".calculator-screen").value+=val;
@@ -65,10 +61,10 @@ function operatorClick(val) {
 
 //function that is triggerd when equals sign is clicked; performs calculation and displays result on calculator screen
 function equalsClick(val) {
-
+  
     //gets equation from calculator screen
     let equation = document.querySelector(".calculator-screen").value;
-   
+    
     // handles case where there is no second value after opeator
     let last_char = equation[equation.length-1]
     if (last_char==="+" || last_char ==="-" || last_char ==="*" || last_char==="/") {
@@ -76,10 +72,16 @@ function equalsClick(val) {
      }
 
     //handles case where there is no operator 
-    if (!(equation.includes("+")|| equation.includes("-") || equation.includes("*") || equation.includes("/"))) {
+    if (!(equation.includes("+")|| equation.includes("-") || equation.includes("*") || equation.includes("/")) ) {
         return;
     }
-
+    //handles case where there is no operator and the number is negative
+    if (equation[0] === "-") {
+        let result = equation.substring(1);
+        if (!(result.includes("+") || result.includes("-") || result.includes("*") || result.includes("/"))) {
+        return;
+    }
+}
     // in the case where a previous calculation was done, resets result of previous calculation to zero so new equation can be calculated
     if (op!=="") {
         num=0;
@@ -99,13 +101,14 @@ function equalsClick(val) {
             
             //distinguishes negative numbers from the minus operator
             if (i===0 && equation[i] === "-" ) {
-             continue;
-            }
-            if (equation[i] === "-" && (equation[i-1] === '*' || equation[i-1]==="/" )) {
-             continue;
-            }
-            
-            // when operator is found, parses number before it and performs calculation that matches operator that was found
+              continue;
+              }
+            if ((op==="*" || op==="/") && equation[i] === "-" ) {
+                i+=1;
+                continue;
+             }
+               
+             // when operator is found, parses number before it and performs calculation that matches operator that was found
             if (op==='+') {
                 num+=Number.parseFloat(equation.substring(ind,i));
             } 
@@ -143,8 +146,9 @@ function equalsClick(val) {
     // displays result of calculation on calculator screen    
     // converts number to string, rounds it to 8 decimal places, removes extra zero padding
     document.querySelector(".calculator-screen").value=Number(num.toFixed(8));
-    op="";       
-}
+    op="";  
+    return;    
+    }
 
 // function that is triggered when AC button is clicked; resets everything.
 function reset() {
