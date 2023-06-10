@@ -1,9 +1,11 @@
 
- // global varianble, stores result of operation
+ // global varianble, stores result of last calculation
  let num=0
+// global variable, stores last operator
  let op=""
 
- 
+
+ // function that is triggered when a number or decimal is clicked, adds it to calculator screen
 function numberClick(val) {
    
     // handles the case where a calculation has been done and the next input entered is a number=resets calculator screen to zero
@@ -13,8 +15,8 @@ function numberClick(val) {
     // handles initial case where first number is a zero
     } else if (document.querySelector(".calculator-screen").value==="0") {
         document.querySelector(".calculator-screen").value=val;
-    // handles case where user accidentally inputs 2 decimal points
     }
+    // handles case where user accidentally inputs multiple decimal points
     else if (val===".") {
         let screen = document.querySelector(".calculator-screen").value;
         let last_char = screen[screen.length-1]
@@ -43,14 +45,13 @@ function operatorClick(val) {
           op=val;
         }
         
-        // deals with case where user accidentally enters 2 consecutive operators
+        // deals with case where user accidentally enters multiple consecutive operators
         let screen = document.querySelector(".calculator-screen").value;
         let last_char = screen[screen.length-1]
         if ((last_char==="+" || last_char ==="-" || last_char ==="*" || last_char==="/") && val != "-") {
             screen=screen.slice(0, screen.length-1)
-            console.log(screen)
             document.querySelector(".calculator-screen").value=screen;
-            
+        // allows for multiplication and division by negative numbers.            
         } else if (val==="-" && (last_char==="+" || last_char ==="-")) {
             screen=screen.slice(0, screen.length-1)
             console.log(screen)
@@ -66,12 +67,13 @@ function equalsClick(val) {
     
     let equation = document.querySelector(".calculator-screen").value;
    
+    // handles case where there is no second value after opeator
     let last_char = equation[equation.length-1]
     if (last_char==="+" || last_char ==="-" || last_char ==="*" || last_char==="/") {
 
         return;
      }
-
+    //handles case where there is no operator 
     if (!(equation.includes("+")|| equation.includes("-") || equation.includes("*") || equation.includes("/"))) {
      return;
     }
@@ -80,9 +82,16 @@ function equalsClick(val) {
       num=0;
     }
     
+    // set initial operator to + so first number on screen can be added
     op="+";
+
+    // stores index of number after operator
     let ind=0;
+
+    //iterates through equation
     for (let i=0; i<equation.length;i++) {
+        
+        //looks for operator
         if (equation[i]==="+" || equation[i]==="-" || equation[i]==="*" || equation[i]==="/") {
             
             //distinguishes negative numbers from the minus operator
@@ -93,17 +102,14 @@ function equalsClick(val) {
                 continue;
                }
             
-            
-               if (op==='+') {
+            if (op==='+') {
                 num+=Number.parseFloat(equation.substring(ind,i));
             } 
             if (op==='-') {
                 num-=Number.parseFloat(equation.substring(ind,i));
             } 
             if (op==='*') {
-               
-                num*=Number.parseFloat(equation.substring(ind,i));
-              
+               num*=Number.parseFloat(equation.substring(ind,i));
             } 
             if (op==='/') {
                 num/=Number.parseFloat(equation.substring(ind,i));
@@ -134,7 +140,7 @@ function equalsClick(val) {
         
 }
 
-
+//
 function reset() {
   num=0;
   op="";
