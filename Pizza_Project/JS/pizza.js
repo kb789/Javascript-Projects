@@ -94,7 +94,7 @@ document.getElementById("btnReset").disabled = true;
 // get pizza size radio buttons from html document
 const size_radios = document.getElementsByClassName("size");
 
-// itrates through them and adds an event listener that fires when a radio button is clicked
+// iterates through them and adds an event listener that fires when a radio button is clicked
 for (let i=0; i< size_radios.length; i++) {
     size_radios[i].addEventListener('change', function() {
       if (size_radios[i].checked) {
@@ -102,7 +102,7 @@ for (let i=0; i< size_radios.length; i++) {
         // sets current pizza size to checked radio button
         current_size=size_radios[i].value
 
-        //enabled order button and makes cart visible
+        //enables order button and makes cart visible
         document.getElementById("btnOrder").disabled = false;
         document.getElementById("cart").style.visibility="visible";
 
