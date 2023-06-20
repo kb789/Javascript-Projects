@@ -5,6 +5,7 @@
     </head>
     <script>
         $(document).ready(function() {
+            //put everything between the body opening and closing tags below between the html tags in this document 
             $("html").append(
             "<body>\
                 <div id='container'>\
@@ -17,7 +18,9 @@
                 </div>\
             </body>"   
             );
+        // make the font color of the second paragraph red
         $('#2').css({"color":"red"})
+        // when the third paragraph is clicked, hide the h1
         $('#3').click(function(){
             $('h1').hide();
         });
